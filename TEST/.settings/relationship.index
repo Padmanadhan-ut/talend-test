@@ -65,6 +65,10 @@
     "type" : "job"
   },
   "relatedItems" : [ {
+    "id" : "_VrFg4KqvEfGdPcSexz1FyA",
+    "version" : "Latest",
+    "type" : "property"
+  }, {
     "id" : "_VGqGgKqhEfGdPcSexz1FyA - metadata",
     "version" : "Latest",
     "type" : "schema"
