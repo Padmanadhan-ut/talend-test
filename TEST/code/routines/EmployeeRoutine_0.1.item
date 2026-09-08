@@ -1,0 +1,16 @@
+public static String buildFullName(String firstName, String lastName) {
+
+    if (firstName == null && lastName == null) {
+        return null;
+    }
+
+    if (firstName == null) {
+        return lastName.trim();
+    }
+
+    if (lastName == null) {
+        return firstName.trim();
+    }
+
+    return firstName.trim() + " " + lastName.trim();
+}
