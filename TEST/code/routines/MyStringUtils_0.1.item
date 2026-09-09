@@ -1,6 +1,6 @@
 package routines;
 
-public class StringUtils {
+public class MyStringUtils {
 
     public static String buildFullName(String firstName, String lastName) {
 
@@ -18,5 +18,4 @@ public class StringUtils {
 
         return (firstName.trim() + " " + lastName.trim()).trim();
     }
-
 }
