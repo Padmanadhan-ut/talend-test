@@ -1,0 +1,148 @@
+package routines;
+
+import java.io.File;
+import java.util.Date;
+import java.util.Map;
+
+public class ETLLogger {
+
+    public static void initialize(
+            Map<String, Object> globalMap) {
+
+        globalMap.put("LOG_JOB_NAME", "SCD");
+        globalMap.put("LOG_COMPONENT_NAME", "SCD");
+        globalMap.put("LOG_LEVEL", "INFO");
+        globalMap.put("LOG_STATUS", "STARTED");
+
+        globalMap.put("LOG_FILE_NAME", null);
+
+        globalMap.put("LOG_SOURCE_COUNT", 0);
+        globalMap.put("LOG_INSERT_COUNT", 0);
+        globalMap.put("LOG_UPDATE_COUNT", 0);
+        globalMap.put("LOG_REJECT_COUNT", 0);
+
+        globalMap.put(
+            "LOG_START_TIME",
+            new Date()
+        );
+
+        globalMap.put("LOG_END_TIME", null);
+        globalMap.put("LOG_MESSAGE", "");
+        globalMap.put("LOG_ERROR_MESSAGE", null);
+    }
+
+
+    public static void setFileName(
+            Map<String, Object> globalMap,
+            String filePath) {
+
+        if (filePath == null || filePath.trim().isEmpty()) {
+            globalMap.put("LOG_FILE_NAME", null);
+            return;
+        }
+
+        String fileName =
+            new File(filePath).getName();
+
+        globalMap.put(
+            "LOG_FILE_NAME",
+            fileName
+        );
+
+        globalMap.put(
+            "LOG_START_TIME",
+            new Date()
+        );
+
+        globalMap.put(
+            "LOG_STATUS",
+            "STARTED"
+        );
+
+        System.out.println(
+            "Processing file: " + fileName
+        );
+    }
+
+
+    public static void setCount(
+            Map<String, Object> globalMap,
+            String logKey,
+            String componentName) {
+
+        Object value =
+            globalMap.get(
+                componentName + "_NB_LINE"
+            );
+
+        int count = 0;
+
+        if (value instanceof Number) {
+            count =
+                ((Number) value).intValue();
+        }
+
+        globalMap.put(
+            logKey,
+            count
+        );
+    }
+
+
+    public static void success(
+            Map<String, Object> globalMap,
+            String message) {
+
+        globalMap.put(
+            "LOG_LEVEL",
+            "INFO"
+        );
+
+        globalMap.put(
+            "LOG_STATUS",
+            "SUCCESS"
+        );
+
+        globalMap.put(
+            "LOG_MESSAGE",
+            message
+        );
+
+        globalMap.put(
+            "LOG_END_TIME",
+            new Date()
+        );
+    }
+
+
+    public static void error(
+            Map<String, Object> globalMap,
+            String message,
+            String errorMessage) {
+
+        globalMap.put(
+            "LOG_LEVEL",
+            "ERROR"
+        );
+
+        globalMap.put(
+            "LOG_STATUS",
+            "FAILED"
+        );
+
+        globalMap.put(
+            "LOG_MESSAGE",
+            message
+        );
+
+        globalMap.put(
+            "LOG_ERROR_MESSAGE",
+            errorMessage
+        );
+
+        globalMap.put(
+            "LOG_END_TIME",
+            new Date()
+        );
+    }
+}

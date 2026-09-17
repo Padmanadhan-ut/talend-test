@@ -132,6 +132,10 @@
     "id" : "_zyJ0YKXIEfGcPuSZT8sP8A",
     "version" : "Latest",
     "type" : "property"
+  }, {
+    "id" : "ETLLogger",
+    "version" : "Latest",
+    "type" : "routine"
   } ]
 }, {
   "baseItem" : {
